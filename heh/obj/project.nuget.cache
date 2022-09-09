@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "dPB8H1Qq8YY1Gjkdg0mG1QMe/Rd0ifDfnaCIDFmC/Vuc/+YGeeRsCEdSfkqvWUOwwllJShTpb+sj3DUXppD0aw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ltp\\RiderProjects\\Heh\\heh\\heh.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ltp\\.nuget\\packages\\fody\\6.5.1\\fody.6.5.1.nupkg.sha512",
+    "C:\\Users\\ltp\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.2\\microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
+    "C:\\Users\\ltp\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net48\\1.0.2\\microsoft.netframework.referenceassemblies.net48.1.0.2.nupkg.sha512",
+    "C:\\Users\\ltp\\.nuget\\packages\\petapoco.compiled\\6.0.480\\petapoco.compiled.6.0.480.nupkg.sha512",
+    "C:\\Users\\ltp\\.nuget\\packages\\propertychanged.fody\\3.4.0\\propertychanged.fody.3.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
