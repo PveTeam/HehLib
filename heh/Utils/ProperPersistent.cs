@@ -15,6 +15,7 @@ namespace heh.Utils;
 public sealed class ProperPersistent<TViewModel> : IDisposable where TViewModel : class, INotifyPropertyChanged, new()
 {
     private static readonly XmlSerializer Serializer = new(typeof(TViewModel));
+    private static readonly XmlSerializerNamespaces Namespaces = new(new[] {new XmlQualifiedName("", "")});
     private static readonly ILogger Log = LogManager.GetLogger($"ProperPersistent_{typeof(TViewModel)}");
 
     private readonly ChangeListener _listener;
@@ -36,11 +37,15 @@ public sealed class ProperPersistent<TViewModel> : IDisposable where TViewModel 
             catch (Exception e)
             {
                 Log.Error(e);
+                Data = defaultViewModel ?? new TViewModel();
             }
         }
-        
-        Data ??= defaultViewModel ?? new TViewModel();
-        
+        else
+        {
+            Data = defaultViewModel ?? new TViewModel();
+            Save();
+        }
+
         _listener = ChangeListener.Create(Data)!;
         _listener.PropertyChanged += ListenerOnPropertyChanged;
     }
@@ -67,16 +72,13 @@ public sealed class ProperPersistent<TViewModel> : IDisposable where TViewModel 
             Path = newPath;
         
         using var stream = File.Create(Path);
-        using var writer = new XmlTextWriter(stream, Encoding.Default)
+        using var writer = new XmlTextWriter(stream, Encoding.UTF8)
         {
             Formatting = Formatting.Indented,
-            Settings =
-            {
-                CheckCharacters = true
-            }
+            Namespaces = false
         };
         
-        Serializer.Serialize(writer, Data);
+        Serializer.Serialize(writer, Data, Namespaces);
     }
 
     public static ProperPersistent<TViewModel> Load(string path, bool saveIfNew = true) => new(path);
